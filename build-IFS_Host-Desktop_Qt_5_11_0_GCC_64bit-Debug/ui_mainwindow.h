@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -29,6 +30,8 @@ public:
     QWidget *tab_2;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QLabel *TimeLable_2;
+    QLabel *TimeLable;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -36,7 +39,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1071, 694);
+        MainWindow->resize(1071, 810);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -50,12 +53,18 @@ public:
         tabWidget->addTab(tab_2, QString());
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 30, 511, 391));
+        verticalLayoutWidget->setGeometry(QRect(20, 30, 511, 571));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        TimeLable_2 = new QLabel(centralWidget);
+        TimeLable_2->setObjectName(QStringLiteral("TimeLable_2"));
+        TimeLable_2->setGeometry(QRect(30, 630, 509, 21));
+        TimeLable = new QLabel(centralWidget);
+        TimeLable->setObjectName(QStringLiteral("TimeLable"));
+        TimeLable->setGeometry(QRect(30, 660, 509, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -78,6 +87,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
+        TimeLable_2->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        TimeLable->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

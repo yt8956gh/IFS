@@ -4,6 +4,7 @@
 
 #include <QtCharts/QChart>
 #include <QtCore/QTimer>
+#include <QElapsedTimer>
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QSplineSeries;
@@ -17,7 +18,7 @@ class LineChart: public QChart
 {
     Q_OBJECT
 public:
-    LineChart(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    LineChart(QColor LineColor=Qt::red,QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
     virtual ~LineChart();
 
 public slots:
@@ -31,6 +32,7 @@ private:
     qreal m_step;
     qreal m_x;
     qreal m_y;
+    QElapsedTimer myElapsedTimer;
 };
 
 #endif // LINECHART_H

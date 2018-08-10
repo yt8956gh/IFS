@@ -8,6 +8,7 @@
 #include <QtCharts>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QElapsedTimer>
 
 namespace Ui {
 class MainWindow;
@@ -19,10 +20,17 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    QTime *time;
     ~MainWindow();
+
+public slots:
+    void timerUpDate();
 
 private:
     Ui::MainWindow *ui;
+    QTimer *timer;
+    QElapsedTimer myElapsedTimer;
+
 };
 
 #endif // MAINWINDOW_H

@@ -4,8 +4,11 @@
 #include <QtCharts/QValueAxis>
 #include <QtCore/QRandomGenerator>
 #include <QtCore/QDebug>
+#include <iostream>
 
-LineChart::LineChart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
+using namespace std;
+
+LineChart::LineChart(QColor LineColor,QGraphicsItem *parent, Qt::WindowFlags wFlags):
     QChart(QChart::ChartTypeCartesian, parent, wFlags),
     m_series(0),
     m_axis(new QValueAxis),
@@ -17,7 +20,7 @@ LineChart::LineChart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_timer.setInterval(1000);
 
     m_series = new QSplineSeries(this);
-    QPen green(Qt::red);
+    QPen green(LineColor);
     green.setWidth(3);
     m_series->setPen(green);
     m_series->append(m_x, m_y);
@@ -27,9 +30,16 @@ LineChart::LineChart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     setAxisX(m_axis, m_series);
     m_axis->setTickCount(5);
     axisX()->setRange(0, 10);
-    axisY()->setRange(-5, 10);
+    axisY()->setRange(0, 35);
+
+    QFont font;
+    font.setPixelSize(12);
+
+    axisX()->setLabelsVisible(false);
+    axisY()->setLabelsFont(font);
 
     m_timer.start();
+    myElapsedTimer.start();
 }
 
 LineChart::~LineChart()
@@ -39,12 +49,11 @@ LineChart::~LineChart()
 
 void LineChart::handleTimeout()
 {
+    //printf("",myElapsedTimer.elapsed());
     qreal x = plotArea().width() / m_axis->tickCount();
     qreal y = (m_axis->max() - m_axis->min()) / m_axis->tickCount();
     m_x += y;
-    m_y = QRandomGenerator::global()->bounded(5) - 2.5;
+    m_y = QRandomGenerator::global()->bounded(5) + 25;
     m_series->append(m_x, m_y);
     scroll(x, 0);
-    if (m_x == 100)
-        m_timer.stop();
 }
