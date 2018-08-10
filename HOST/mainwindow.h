@@ -6,6 +6,8 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 namespace Ui {
 class MainWindow;
