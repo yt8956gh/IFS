@@ -2,16 +2,16 @@
 #include "ui_mainwindow.h"
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
-#include <stdlib.h>
-#include <time.h>
-#include <linechart.h>
 #include <QElapsedTimer>
-#include <iostream>
+#include <QTableWidget>
 #include <QDebug>
 #include <QString>
+#include <iostream>
 #include <string>
-#include <stdlib.h>
 #include <sstream>
+#include <linechart.h>
+#include <stdlib.h>
+#include <time.h>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QLabel *label1  =new QLabel("內容1");
     QLabel *label2  =new QLabel("內容2");
-    QLabel *label3  =new QLabel("內容3");
 
 
     LineChart *chart = new LineChart(qRgb(255, 51, 0));
@@ -53,11 +52,66 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->verticalLayout->addSpacing(1);
     ui->verticalLayout->addWidget(chartView3);
 
+    //QTableWidget link_device_table;
+
+    link_device_table = new QTableWidget();
+    link_device_table->setColumnCount(4);
+    link_device_table->setRowCount(20);
+    link_device_table->setEditTriggers(QAbstractItemView::NoEditTriggers);\
+    link_device_table->horizontalHeader()->setStretchLastSection(true);
+    link_device_table->setHorizontalHeaderItem(0, new QTableWidgetItem("子機名稱"));
+    link_device_table->setHorizontalHeaderItem(1, new QTableWidgetItem("感測類型"));
+    link_device_table->setHorizontalHeaderItem(2, new QTableWidgetItem("目前狀態"));
+    link_device_table->setHorizontalHeaderItem(3, new QTableWidgetItem("IP"));
+
+    for(int i=0;i<8;i++)
+    {
+       QString name;
+       name = "ESP-" + QString::number(rand()%1000);
+       link_device_table->setItem(i,0,new QTableWidgetItem(name));
+
+
+       QString category;
+       switch(i%4)
+       {
+       case 0:
+           category = "溫溼度";
+           break;
+       case 1:
+           category = "耗電量";
+           break;
+       case 2:
+           category = "淹水高度";
+           break;
+       case 3:
+           category = "流量";
+           break;
+       }
+
+       link_device_table->setItem(i,1,new QTableWidgetItem(category));
+
+       link_device_table->setItem(i,2,new QTableWidgetItem("運作中"));
+
+       link_device_table->setItem(i,3,new QTableWidgetItem("192.168."+QString::number(rand()%255)+"."+QString::number(rand()%255)));
+    }
+
     ui->tabWidget->removeTab(0);
     ui->tabWidget->removeTab(0);
+    ui->tabWidget->addTab(link_device_table,"連線設備");
     ui->tabWidget->addTab(label1,"警示系統");
     ui->tabWidget->addTab(label2,"主機狀態");
-    ui->tabWidget->addTab(label3,"連線設備");
+
+    /*
+    ui->tableWidget->setColumnCount(1);
+    ui->tableWidget->setRowCount(20);
+
+    //禁止編輯表單
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    //去掉表單水平label 再設成水平延展
+    ui->tableWidget->horizontalHeader()->setVisible(false);
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    */
 
     timer = new QTimer(this);
     time = new QTime();
@@ -84,5 +138,6 @@ void MainWindow::timerUpDate()
 
 MainWindow::~MainWindow()
 {
+    delete link_device_table;
     delete ui;
 }

@@ -30,7 +30,7 @@ LineChart::LineChart(QColor LineColor,QGraphicsItem *parent, Qt::WindowFlags wFl
     setAxisX(m_axis, m_series);
     m_axis->setTickCount(5);
     axisX()->setRange(0, 10);
-    axisY()->setRange(0, 35);
+    axisY()->setRange(20, 35);
 
     QFont font;
     font.setPixelSize(12);

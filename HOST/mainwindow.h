@@ -30,6 +30,7 @@ private:
     Ui::MainWindow *ui;
     QTimer *timer;
     QElapsedTimer myElapsedTimer;
+    QTableWidget *link_device_table;
 
 };
 
