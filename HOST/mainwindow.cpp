@@ -6,9 +6,7 @@
 #include <QTableWidget>
 #include <QDebug>
 #include <QString>
-#include <iostream>
 #include <string>
-#include <sstream>
 #include <linechart.h>
 #include <stdlib.h>
 #include <time.h>
@@ -27,24 +25,26 @@ MainWindow::MainWindow(QWidget *parent) :
     QLabel *label2  =new QLabel("內容2");
 
 
-    LineChart *chart = new LineChart(qRgb(255, 51, 0));
+    LineChart *chart = new LineChart(qRgb(255, 51, 0),27,2);
     chart->setTitle("溫度");
     chart->legend()->hide();
     chart->setAnimationOptions(QChart::AllAnimations);
     QChartView *chartView = new QChartView(chart);
 
 
-    LineChart *chart2 = new LineChart(qRgb(0, 102, 128));
+    LineChart *chart2 = new LineChart(qRgb(0, 102, 128),70,2);
     chart2->setTitle("溼度");
     chart2->legend()->hide();
     chart2->setAnimationOptions(QChart::AllAnimations);
     QChartView *chartView2 = new QChartView(chart2);
 
-    LineChart *chart3 = new LineChart(qRgb(0, 128, 43));
+    LineChart *chart3 = new LineChart(qRgb(0, 128, 43),500,250);
     chart3->setTitle(tr("耗電量"));
     chart3->legend()->hide();
     chart3->setAnimationOptions(QChart::AllAnimations);
     QChartView *chartView3 = new QChartView(chart3);
+
+    //建立左邊摺線圖的垂直布局
 
     ui->verticalLayout->addWidget(chartView);
     ui->verticalLayout->addSpacing(1);
@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->verticalLayout->addSpacing(1);
     ui->verticalLayout->addWidget(chartView3);
 
-    //QTableWidget link_device_table;
+    //建立連結設備表單
 
     link_device_table = new QTableWidget();
     link_device_table->setColumnCount(4);
