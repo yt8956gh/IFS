@@ -9,6 +9,13 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QElapsedTimer>
+#include <QTableWidget>
+#include <QDebug>
+#include <QString>
+#include <string>
+#include <linechart.h>
+#include <stdlib.h>
+#include <time.h>
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +38,7 @@ private:
     QTimer *timer;
     QElapsedTimer myElapsedTimer;
     QTableWidget *link_device_table;
+    QTableWidget *Part_number_table;
 
 };
 

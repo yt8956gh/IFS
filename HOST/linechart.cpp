@@ -1,15 +1,11 @@
 #include "linechart.h"
-#include <QtCharts/QAbstractAxis>
-#include <QtCharts/QSplineSeries>
-#include <QtCharts/QValueAxis>
-#include <QtCore/QDebug>
-#include <iostream>
+
 
 using namespace std;
 
 LineChart::LineChart(QColor LineColor,int mid,int interval,QGraphicsItem *parent, Qt::WindowFlags wFlags):
     QChart(QChart::ChartTypeCartesian, parent, wFlags),
-    m_series(0),
+    m_series(),
     m_axis(new QValueAxis),
     m_step(0),
     m_x(5),
@@ -41,6 +37,8 @@ LineChart::LineChart(QColor LineColor,int mid,int interval,QGraphicsItem *parent
 
     m_timer.start();
     myElapsedTimer.start();
+
+    setMargins(QMargins(10,0,0,0));
 }
 
 LineChart::~LineChart()

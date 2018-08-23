@@ -31,7 +31,6 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    linechart.h \
     linechart.h
 
 FORMS += \

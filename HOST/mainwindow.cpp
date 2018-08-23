@@ -1,15 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
-#include <QElapsedTimer>
-#include <QTableWidget>
-#include <QDebug>
-#include <QString>
-#include <string>
-#include <linechart.h>
-#include <stdlib.h>
-#include <time.h>
+
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -22,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(tr("IFS 智慧工廠系統"));
 
     QLabel *label1  =new QLabel("內容1");
-    QLabel *label2  =new QLabel("內容2");
-
 
     LineChart *chart = new LineChart(qRgb(255, 51, 0),27,2);
     chart->setTitle("溫度");
@@ -59,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     link_device_table->setRowCount(20);
     link_device_table->setEditTriggers(QAbstractItemView::NoEditTriggers);\
     link_device_table->horizontalHeader()->setStretchLastSection(true);
-    link_device_table->setHorizontalHeaderItem(0, new QTableWidgetItem("子機名稱"));
+    link_device_table->setHorizontalHeaderItem(0, new QTableWidgetItem("名稱"));
     link_device_table->setHorizontalHeaderItem(1, new QTableWidgetItem("感測類型"));
     link_device_table->setHorizontalHeaderItem(2, new QTableWidgetItem("目前狀態"));
     link_device_table->setHorizontalHeaderItem(3, new QTableWidgetItem("IP"));
@@ -70,9 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
        name = "ESP-" + QString::number(rand()%1000);
        link_device_table->setItem(i,0,new QTableWidgetItem(name));
 
-
        QString category;
-       switch(i%4)
+       switch(i%3)
        {
        case 0:
            category = "溫溼度";
@@ -81,25 +69,66 @@ MainWindow::MainWindow(QWidget *parent) :
            category = "耗電量";
            break;
        case 2:
-           category = "淹水高度";
-           break;
-       case 3:
            category = "流量";
            break;
        }
 
        link_device_table->setItem(i,1,new QTableWidgetItem(category));
 
-       link_device_table->setItem(i,2,new QTableWidgetItem("運作中"));
+       if(i<6)
+       {
+           link_device_table->setItem(i,2,new QTableWidgetItem("運作中"));
+       }
+       else
+       {
+           link_device_table->setItem(i,2,new QTableWidgetItem("離線"));
+       }
 
        link_device_table->setItem(i,3,new QTableWidgetItem("192.168."+QString::number(rand()%255)+"."+QString::number(rand()%255)));
     }
 
+
+
+    Part_number_table = new QTableWidget();
+    Part_number_table->setColumnCount(3);
+    Part_number_table->setRowCount(20);
+    Part_number_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    Part_number_table->horizontalHeader()->setStretchLastSection(true);
+    Part_number_table->setHorizontalHeaderItem(0, new QTableWidgetItem("廠區"));
+    Part_number_table->setHorizontalHeaderItem(1, new QTableWidgetItem("設備"));
+    Part_number_table->setHorizontalHeaderItem(2, new QTableWidgetItem("用電量"));
+
+
+    for(int i=0;i<5;i++)
+    {
+       QString name;
+
+       Part_number_table->setItem(i,0,new QTableWidgetItem("FAB1"));
+
+       Part_number_table->setItem(i,1,new QTableWidgetItem("ASC_"+QString::number(rand()%1000)));
+
+       Part_number_table->setItem(i,2,new QTableWidgetItem(QString::number(rand()%100)));
+    }
+
+    for(int i=5;i<14;i++)
+    {
+       QString name;
+
+       Part_number_table->setItem(i,0,new QTableWidgetItem("FAB2"));
+
+       Part_number_table->setItem(i,1,new QTableWidgetItem("PBS_"+QString::number(rand()%1000)));
+
+       Part_number_table->setItem(i,2,new QTableWidgetItem(QString::number(rand()%1000)));
+    }
+
     ui->tabWidget->removeTab(0);
     ui->tabWidget->removeTab(0);
-    ui->tabWidget->addTab(link_device_table,"連線設備");
+    ui->tabWidget->addTab(Part_number_table,"能耗管理");
+    ui->tabWidget->addTab(link_device_table,"感應器");
     ui->tabWidget->addTab(label1,"警示系統");
-    ui->tabWidget->addTab(label2,"主機狀態");
+
+
+
 
     /*
     ui->tableWidget->setColumnCount(1);

@@ -14,6 +14,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -32,6 +34,10 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *TimeLable_2;
     QLabel *TimeLable;
+    QSplitter *splitter;
+    QPushButton *AddNewSensor;
+    QPushButton *AnalysisCompare;
+    QPushButton *OutputCSV;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -39,12 +45,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1071, 810);
+        MainWindow->resize(1071, 753);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(550, 20, 511, 401));
+        tabWidget->setGeometry(QRect(550, 20, 511, 501));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         tabWidget->addTab(tab, QString());
@@ -65,6 +71,19 @@ public:
         TimeLable = new QLabel(centralWidget);
         TimeLable->setObjectName(QStringLiteral("TimeLable"));
         TimeLable->setGeometry(QRect(30, 660, 509, 31));
+        splitter = new QSplitter(centralWidget);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setGeometry(QRect(550, 530, 511, 61));
+        splitter->setOrientation(Qt::Horizontal);
+        AddNewSensor = new QPushButton(splitter);
+        AddNewSensor->setObjectName(QStringLiteral("AddNewSensor"));
+        splitter->addWidget(AddNewSensor);
+        AnalysisCompare = new QPushButton(splitter);
+        AnalysisCompare->setObjectName(QStringLiteral("AnalysisCompare"));
+        splitter->addWidget(AnalysisCompare);
+        OutputCSV = new QPushButton(splitter);
+        OutputCSV->setObjectName(QStringLiteral("OutputCSV"));
+        splitter->addWidget(OutputCSV);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -89,6 +108,9 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
         TimeLable_2->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
         TimeLable->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        AddNewSensor->setText(QApplication::translate("MainWindow", "\346\226\260\345\242\236\346\204\237\346\207\211\345\231\250", nullptr));
+        AnalysisCompare->setText(QApplication::translate("MainWindow", "\350\203\275\350\200\227\345\210\206\346\236\220\346\257\224\350\274\203", nullptr));
+        OutputCSV->setText(QApplication::translate("MainWindow", "\345\214\257\345\207\272\350\241\250\345\226\256", nullptr));
     } // retranslateUi
 
 };

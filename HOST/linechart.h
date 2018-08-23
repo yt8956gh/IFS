@@ -5,6 +5,11 @@
 #include <QtCharts/QChart>
 #include <QtCore/QTimer>
 #include <QElapsedTimer>
+#include <QtCharts/QAbstractAxis>
+#include <QtCharts/QSplineSeries>
+#include <QtCharts/QValueAxis>
+#include <QtCore/QDebug>
+#include <iostream>
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QSplineSeries;
