@@ -6,6 +6,7 @@
 
 QT += core gui
 QT += charts
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,11 +28,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    linechart.cpp
+    linechart.cpp \
+    server.cpp
 
 HEADERS += \
         mainwindow.h \
-    linechart.h
+    linechart.h \
+    server.h
 
 FORMS += \
         mainwindow.ui

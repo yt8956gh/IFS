@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "server.h"
 
 
 QT_CHARTS_USE_NAMESPACE
@@ -144,10 +145,24 @@ MainWindow::MainWindow(QWidget *parent) :
 
     timer = new QTimer(this);
     time = new QTime();
-
     connect(timer,SIGNAL(timeout()),this,SLOT(timerUpDate()));
-    timer->start(1000);
+    timer->start(1000); 
     time->start();
+
+    serverPtr = new server(this);
+
+
+    /*
+    QProcess *serverprocess = new QProcess(this);
+    bool check = QObject::connect(serverprocess, &QProcess::readyRead, this,[serverprocess](){
+        QString output = serverprocess->readAllStandardOutput();
+        qInfo()<< "catch" << output;
+    });
+
+    std::cout<<"check"<<check<<std::endl;
+
+    serverprocess->start("/home/na1n/Desktop/server");
+    */
 }
 
 

@@ -16,6 +16,7 @@
 #include <linechart.h>
 #include <stdlib.h>
 #include <time.h>
+#include "server.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,7 +40,7 @@ private:
     QElapsedTimer myElapsedTimer;
     QTableWidget *link_device_table;
     QTableWidget *Part_number_table;
-
+    server *serverPtr;
 };
 
 #endif // MAINWINDOW_H
