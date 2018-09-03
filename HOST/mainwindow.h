@@ -33,6 +33,8 @@ public:
 
 public slots:
     void timerUpDate();
+    void recvDataCat(QString);
+
 
 private:
     Ui::MainWindow *ui;
@@ -40,7 +42,8 @@ private:
     QElapsedTimer myElapsedTimer;
     QTableWidget *link_device_table;
     QTableWidget *Part_number_table;
-    server *serverPtr;
+    LineChart *chart1,*chart2,*chart3;
+    myserver::server *serverPtr;
 };
 
 #endif // MAINWINDOW_H

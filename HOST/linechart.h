@@ -23,11 +23,9 @@ class LineChart: public QChart
 {
     Q_OBJECT
 public:
-    LineChart(QColor LineColor=Qt::red,int mid=27,int interval=1,QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    LineChart(QColor LineColor=Qt::red,int most=100,QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
     virtual ~LineChart();
-
-public slots:
-    void handleTimeout();
+    void DataUpdate(int);
 
 private:
     QTimer m_timer;
@@ -38,7 +36,7 @@ private:
     qreal m_x;
     qreal m_y;
     QElapsedTimer myElapsedTimer;
-    int mid,interval;
+    int most;
 };
 
 #endif // LINECHART_H

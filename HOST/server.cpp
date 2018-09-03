@@ -1,7 +1,9 @@
 #include "server.h"
 
 static const int TotalBytes = 50 * 1024 * 1024;
-static const int PayloadSize = 64 * 1024; // 64 KB
+static const int PayloadSize = 64 * 1024; // 64
+
+using namespace myserver;
 
 server::server(QObject *parent):QObject(parent)
 {
@@ -20,7 +22,7 @@ void server::start()
     }
 }
 
-void server::listen(int port)
+void server::listen(unsigned short port)
 {
     this->tcpServer.listen(QHostAddress::Any, port);
 }
@@ -36,7 +38,11 @@ void server::acceptConnection()
 
 void server::updateServerProgress()
 {
-    qDebug()<<tcpServerConnection->readAll();
+    QString recv = tcpServerConnection->readAll();
+    qDebug()<<recv;
+
+    emit recv_data(recv);
+
     tcpServerConnection->close();
     return;
 }
@@ -46,6 +52,8 @@ void server::displayError(QAbstractSocket::SocketError socketError)
     if (socketError == QTcpSocket::RemoteHostClosedError)
     {
         qDebug()<<"ERRO: "<<tcpServer.errorString();
+        tcpServerConnection->close();
         return;
     }
 }
+

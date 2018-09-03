@@ -10,6 +10,8 @@ class QTcpSocket;
 class QAction;
 QT_END_NAMESPACE
 
+
+namespace myserver {
 class server:public QObject
 {
 
@@ -26,6 +28,9 @@ public slots:
     void updateServerProgress();
     void displayError(QAbstractSocket::SocketError socketError);
 
+signals:
+    void recv_data(QString);
+
 private:
     QTcpServer tcpServer;
     QTcpSocket tcpClient;
@@ -35,5 +40,7 @@ private:
     int bytesReceived;
 
 };
+}
+
 
 #endif // SERVER_H
