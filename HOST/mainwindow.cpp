@@ -157,7 +157,7 @@ void MainWindow::recvDataCat(QString Data)
     int C,RH,W;
     C= Data.split(',').at(0).toInt();
     RH= Data.split(',').at(1).toInt();
-    W= Data.split(',').at(2).toInt();
+    W= int(Data.split(',').at(2).toFloat());
 
     chart1->DataUpdate(C);
     chart2->DataUpdate(RH);
