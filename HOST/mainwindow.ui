@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1071</width>
-    <height>810</height>
+    <height>753</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>550</x>
       <y>20</y>
       <width>511</width>
-      <height>401</height>
+      <height>501</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -73,6 +73,34 @@
     <property name="text">
      <string>TextLabel</string>
     </property>
+   </widget>
+   <widget class="QSplitter" name="splitter">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>530</y>
+      <width>511</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <widget class="QPushButton" name="AddNewSensor">
+     <property name="text">
+      <string>新增感應器</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="AnalysisCompare">
+     <property name="text">
+      <string>能耗分析比較</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="OutputCSV">
+     <property name="text">
+      <string>匯出表單</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
