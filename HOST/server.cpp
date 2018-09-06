@@ -40,9 +40,9 @@ void server::updateServerProgress()
 {
     QString recv = tcpServerConnection->readAll();
 
-    if(!recv.isEmpty())//判斷收到的訊息否為空
+    if(!recv.isEmpty() && !tcpServerConnection->peerAddress().isNull())//判斷收到的訊息否為空
     {
-       clientInfo* clientInfoTmp = new clientInfo(
+        clientInfo* clientInfoTmp = new clientInfo(
                    tcpServerConnection->peerAddress().toString().split(":").last(),
                    "ESP","溫溼度/功耗",true);
 
@@ -53,6 +53,14 @@ void server::updateServerProgress()
                clientList.append(*clientInfoTmp);
                emit clientChange(clientList);
         }
+
+        delete  clientInfoTmp;
+    }
+    else
+    {
+        qDebug()<<"Fail to recieve string"
+                <<tcpServerConnection->peerAddress().toString();
+        return;
     }
 
     qDebug()<<"-------------------------------";
