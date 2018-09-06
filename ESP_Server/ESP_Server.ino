@@ -21,8 +21,8 @@
 const char *ssid = "ISDC_AC";
 const char *password = "8131081313";
 
-//const char *ssid = "nain_PC";
-//const char *password = "11151997";
+//const char *ssid = "Home";
+//const char *password = "063355183";
 
 float temperature, humidity;
 int times;
@@ -33,8 +33,7 @@ ESP8266WebServer server ( 80 );
 DHT dht( _dhtpin, _dhttype );
 EnergyMonitor emon1;
 
-const int led = 13;
-int height[40];
+const int led = LED_BUILTIN;
 
 void handleRoot() {
 
@@ -92,6 +91,9 @@ void handleNotFound() {
 
 void setup ( void ) {
 
+  temperature=30;
+  humidity=80;
+
   Serial.begin( _baudrate );
   //Serial.begin ( 115200 );//original
 	pinMode ( led, OUTPUT );
@@ -107,9 +109,6 @@ void setup ( void ) {
 	WiFi.mode ( WIFI_STA );
 	WiFi.begin ( ssid, password );
 	Serial.println ( "" );
-
-
-  for(int i=0;i<40;i++) height[i]=0;
 
 	// Wait for connection
 	while ( WiFi.status() != WL_CONNECTED ) {

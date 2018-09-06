@@ -16,7 +16,9 @@
 #include <linechart.h>
 #include <stdlib.h>
 #include <time.h>
+#include <QList>
 #include "server.h"
+#include "clientinfo.h"
 
 namespace Ui {
 class MainWindow;
@@ -34,6 +36,7 @@ public:
 public slots:
     void timerUpDate();
     void recvDataCat(QString);
+    void changeClientTable(QList<clientInfo>);
 
 
 private:

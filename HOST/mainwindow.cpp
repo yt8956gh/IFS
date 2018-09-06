@@ -55,41 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     link_device_table->setHorizontalHeaderItem(2, new QTableWidgetItem("目前狀態"));
     link_device_table->setHorizontalHeaderItem(3, new QTableWidgetItem("IP"));
 
-    for(int i=0;i<8;i++)
-    {
-       QString name;
-       name = "ESP-" + QString::number(rand()%1000);
-       link_device_table->setItem(i,0,new QTableWidgetItem(name));
-
-       QString category;
-       switch(i%3)
-       {
-       case 0:
-           category = "溫溼度";
-           break;
-       case 1:
-           category = "耗電量";
-           break;
-       case 2:
-           category = "流量";
-           break;
-       }
-
-       link_device_table->setItem(i,1,new QTableWidgetItem(category));
-
-       if(i<6)
-       {
-           link_device_table->setItem(i,2,new QTableWidgetItem("運作中"));
-       }
-       else
-       {
-           link_device_table->setItem(i,2,new QTableWidgetItem("離線"));
-       }
-
-       link_device_table->setItem(i,3,new QTableWidgetItem("192.168."+QString::number(rand()%255)+"."+QString::number(rand()%255)));
-    }
-
-
 
     Part_number_table = new QTableWidget();
     Part_number_table->setColumnCount(3);
@@ -149,7 +114,26 @@ MainWindow::MainWindow(QWidget *parent) :
 
     serverPtr = new server(this);
 
-    connect(serverPtr,SIGNAL(recv_data(QString)),this,SLOT(recvDataCat(QString)));
+    connect(serverPtr,SIGNAL(getData(QString)),this,SLOT(recvDataCat(QString)));
+    connect(serverPtr,SIGNAL(clientChange(QList<clientInfo>)),this,SLOT(changeClientTable(QList<clientInfo>)));
+}
+
+void MainWindow::changeClientTable(QList<clientInfo> clientList)
+{
+    for(int i=0;i<clientList.count();i++)
+    {
+       QString name("ESP-");
+       name += QString(i+1);
+
+       link_device_table->setItem(i,0,new QTableWidgetItem(name));
+
+       link_device_table->setItem(i,1,new QTableWidgetItem("溫溼度/能耗"));
+
+       link_device_table->setItem(i,2,new QTableWidgetItem(clientList.at(i).getActive()?"運作中":"離線"));
+
+       link_device_table->setItem(i,3,new QTableWidgetItem(clientList.at(i).getIP()));
+    }
+
 }
 
 void MainWindow::recvDataCat(QString Data)

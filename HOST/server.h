@@ -3,6 +3,10 @@
 
 #include <QtNetwork/QTcpServer>
 #include <QtNetwork/QTcpSocket>
+#include <QList>
+#include <algorithm>
+#include "clientinfo.h"
+
 
 QT_BEGIN_NAMESPACE
 class QTcpServer;
@@ -12,34 +16,36 @@ QT_END_NAMESPACE
 
 
 namespace myserver {
-class server:public QObject
-{
 
-    Q_OBJECT
+    class server:public QObject
+    {
 
-public:
+        Q_OBJECT
 
-    explicit server(QObject *parent);
+    public:
 
-public slots:
-    void start();
-    void listen(unsigned short);
-    void acceptConnection();
-    void updateServerProgress();
-    void displayError(QAbstractSocket::SocketError socketError);
+        explicit server(QObject *parent);
 
-signals:
-    void recv_data(QString);
+    public slots:
+        void start();
+        void listen(unsigned short);
+        void acceptConnection();
+        void updateServerProgress();
+        void displayError(QAbstractSocket::SocketError socketError);
 
-private:
-    QTcpServer tcpServer;
-    QTcpSocket tcpClient;
-    QTcpSocket *tcpServerConnection;
-    int bytesToWrite;
-    int bytesWritten;
-    int bytesReceived;
+    signals:
+        void getData(QString);
+        void clientChange(QList<clientInfo>);
 
-};
+    private:
+        QTcpServer tcpServer;
+        QTcpSocket tcpClient;
+        QTcpSocket *tcpServerConnection;
+        int bytesToWrite;
+        int bytesWritten;
+        int bytesReceived;
+        QList<clientInfo> clientList;
+    };
 }
 
 

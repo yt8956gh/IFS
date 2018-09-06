@@ -1,0 +1,55 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceRoot}",
+                "C:\\Qt\\5.11.1\\mingw53_32\\include",
+                "C:\\Qt\\5.11.1\\mingw53_32\\include\\**",
+                "C:\\Qt\\5.11.1\\Src\\**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "forcedInclude": [ "${workspaceFolder}/" ],
+            "compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64",
+
+            "files.exclude": {
+                "**/.git": true,
+                "**/.svn": true,
+                "**/.hg": true,
+                "**/CVS": true,
+                "**/.DS_Store": true,
+                "**/GPATH": true,
+                "**/GRTAGS": true,
+                "**/GTAGS": true,
+                "**/*.user": true,
+                "**/Makefile*": true,
+                "**/debug": true,
+                "**/release": true,
+                "**/Debug": true,
+                "**/Release": true,
+                "**/*.exe": true,
+                "**/*.dll": true,
+                "**/*.stash": true,
+                "**/*.bat": true,
+                "**/*.cmd": false,
+                "**/*cache": true,
+                "**/*.sdf": true,
+                "**/*.suo": true,
+                "**/Win32": true,
+                "**/ipch": true,
+                "**/x64": true,
+                "**/GeneratedFiles": true,
+                "**/build": true
+            }
+        
+        }
+    ],
+    "version": 4
+}

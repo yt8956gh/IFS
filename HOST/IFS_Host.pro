@@ -29,12 +29,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     linechart.cpp \
-    server.cpp
+    server.cpp \
+    clientinfo.cpp
 
 HEADERS += \
         mainwindow.h \
     linechart.h \
-    server.h
+    server.h \
+    clientinfo.h
 
 FORMS += \
         mainwindow.ui

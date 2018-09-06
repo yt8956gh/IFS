@@ -28,6 +28,7 @@ LineChart::LineChart(QColor LineColor,int most,QGraphicsItem *parent, Qt::Window
     axisX()->setRange(0, 10);
     axisY()->setRange(0, most);
 
+
     QFont font;
     font.setPixelSize(12);
 
@@ -52,6 +53,10 @@ void LineChart::DataUpdate(int num)
         most = int(num*1.2);
         axisY()->setMax(most);
     }
+
+    int count = m_series->count();
+    if((count-5)>=0) m_series->remove(count-5);
+
 
     qreal x = plotArea().width() / m_axis->tickCount();
     qreal y = (m_axis->max() - m_axis->min()) / m_axis->tickCount();
