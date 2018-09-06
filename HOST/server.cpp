@@ -48,8 +48,9 @@ void server::updateServerProgress()
 
        //如果這次的客戶端是新的，就把它新增到Clientlist裡面，
        //並發出clientChange信號要求mainWindow中的QtableWidget重繪。
-        if(std::find(clientList.begin(),clientList.end(), *clientInfoTmp)!=clientList.end())
+        if(std::find(clientList.begin(),clientList.end(), *clientInfoTmp)==clientList.end())
         {
+               qDebug()<<"in find";
                clientList.append(*clientInfoTmp);
                emit clientChange(clientList);
         }

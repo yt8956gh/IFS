@@ -28,6 +28,6 @@ bool clientInfo::getActive() const
 
 bool clientInfo::operator==(const clientInfo& rhs)
 {
-    return (this->getName().compare(rhs.getName()));
+    return !(this->getIP().compare(rhs.getIP()));
 }
 

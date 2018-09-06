@@ -122,8 +122,8 @@ void MainWindow::changeClientTable(QList<clientInfo> clientList)
 {
     for(int i=0;i<clientList.count();i++)
     {
-       QString name("ESP-");
-       name += QString(i+1);
+       char name[100]={};
+       sprintf(name,"ESP-%03d",i+1);
 
        link_device_table->setItem(i,0,new QTableWidgetItem(name));
 
