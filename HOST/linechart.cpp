@@ -8,7 +8,7 @@ LineChart::LineChart(QColor LineColor,int most,QGraphicsItem *parent, Qt::Window
     m_series(),
     m_axis(new QValueAxis),
     m_step(0),
-    m_x(5),
+    m_x(10),
     m_y(1),
     most(most)
 {
@@ -24,7 +24,7 @@ LineChart::LineChart(QColor LineColor,int most,QGraphicsItem *parent, Qt::Window
     addSeries(m_series);
     createDefaultAxes();
     setAxisX(m_axis, m_series);
-    m_axis->setTickCount(5);
+    m_axis->setTickCount(25);
     axisX()->setRange(0, 10);
     axisY()->setRange(0, most);
 
@@ -55,13 +55,13 @@ void LineChart::DataUpdate(int num)
     }
 
     int count = m_series->count();
-    if((count-5)>=0) m_series->remove(count-5);
+    if((count-26)>=0) m_series->remove(count-26);
 
 
-    qreal x = plotArea().width() / m_axis->tickCount();
-    qreal y = (m_axis->max() - m_axis->min()) / m_axis->tickCount();
-    m_x += y;
+    qreal cellWidth = plotArea().width() / m_axis->tickCount();
+    qreal cellHeight = (m_axis->max() - m_axis->min()) / m_axis->tickCount();
+    m_x += cellHeight;
     m_y = num;
     m_series->append(m_x, m_y);
-    scroll(x, 0);
+    scroll(cellWidth, 0);
 }
