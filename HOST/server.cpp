@@ -12,6 +12,7 @@ server::server(QObject *parent):QObject(parent)
     connect(&tcpClient, SIGNAL(error(QAbstractSocket::SocketError)),
             this, SLOT(displayError(QAbstractSocket::SocketError)));
 
+
     this->listen(8700);
 }
 

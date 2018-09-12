@@ -34,3 +34,16 @@ bool database::connect(const QString &filename)
     return true;
 }
 
+bool database::insert(QString time, int t, int h, float p)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO number (time, temperature, humidity, power) "
+                      "VALUES (:time, :temperature, :humidity, :power)");
+
+    query.bindValue(":time",time);
+    query.bindValue(":temperature",t);
+    query.bindValue(":humidity",h);
+    query.bindValue(":power",p);
+
+    return query.exec();
+}

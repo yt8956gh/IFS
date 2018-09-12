@@ -113,13 +113,13 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start(1000); 
     time->start();
 
+    db.connect("IFS_data.db");
+
     serverPtr = new server(this);
 
     connect(serverPtr,SIGNAL(getData(QString)),this,SLOT(recvDataCat(QString)));
     connect(serverPtr,SIGNAL(clientChange(QList<clientInfo>)),this,SLOT(changeClientTable(QList<clientInfo>)));
 
-    database db;
-    db.connect("IFS_data.db");
 }
 
 void MainWindow::changeClientTable(QList<clientInfo> clientList)
@@ -142,14 +142,18 @@ void MainWindow::changeClientTable(QList<clientInfo> clientList)
 
 void MainWindow::recvDataCat(QString Data)
 {
-    int C,RH,W;
+    QTime time=QTime::currentTime();
+    int C,RH;
+    float W;
     C= Data.split(',').at(0).toInt();
     RH= Data.split(',').at(1).toInt();
-    W= int(Data.split(',').at(2).toFloat());
+    W= Data.split(',').at(2).toFloat();
 
     chart1->DataUpdate(C);
     chart2->DataUpdate(RH);
-    chart3->DataUpdate(W);
+    chart3->DataUpdate(int(W));
+
+    db.insert(time.toString("HH:mm:ss"),C,RH,W);
 
     return;
 }

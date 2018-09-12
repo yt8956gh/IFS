@@ -13,6 +13,7 @@ private:
 public:
     database();
     bool connect(const QString &);
+    bool insert(QString , int, int, float);
 };
 
 #endif // DATABASE_H

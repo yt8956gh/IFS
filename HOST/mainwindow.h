@@ -19,6 +19,7 @@
 #include <QList>
 #include "server.h"
 #include "clientinfo.h"
+#include "database.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,6 +48,7 @@ private:
     QTableWidget *Part_number_table;
     LineChart *chart1,*chart2,*chart3;
     myserver::server *serverPtr;
+    database db;
 };
 
 #endif // MAINWINDOW_H
