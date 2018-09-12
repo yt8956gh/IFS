@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "server.h"
+#include "database.h"
 
 
 QT_CHARTS_USE_NAMESPACE
@@ -116,6 +117,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(serverPtr,SIGNAL(getData(QString)),this,SLOT(recvDataCat(QString)));
     connect(serverPtr,SIGNAL(clientChange(QList<clientInfo>)),this,SLOT(changeClientTable(QList<clientInfo>)));
+
+    database db;
+    db.connect("IFS_data.db");
 }
 
 void MainWindow::changeClientTable(QList<clientInfo> clientList)
