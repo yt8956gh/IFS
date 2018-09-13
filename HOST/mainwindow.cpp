@@ -91,8 +91,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->tabWidget->removeTab(0);
     ui->tabWidget->removeTab(0);
-    ui->tabWidget->addTab(Part_number_table,"能耗管理");
+
     ui->tabWidget->addTab(link_device_table,"感應器");
+    ui->tabWidget->addTab(Part_number_table,"能耗管理");
     ui->tabWidget->addTab(label1,"警示系統");
 
     /*
