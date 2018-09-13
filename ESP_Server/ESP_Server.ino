@@ -7,7 +7,7 @@
 
 #define HOST    "192.168.1.254" // ThingSpeak IP Address: 184.106.153.149
 #define PORT    8700
-#define Rated_Voltage 110.0
+#define Rated_Voltage 220.0
 #define Timing 5000 //The cycle of updating data to Raspberry Pi server
 
 
@@ -103,7 +103,7 @@ void setup ( void ) {
   dht.begin();
   Serial.println( "dht Ready!" );
 
-  emon1.current(0, 65);
+  emon1.current(0, 111.1);
   Serial.println( "CT Ready!" );
   
 	WiFi.mode ( WIFI_STA );

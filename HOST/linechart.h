@@ -27,6 +27,10 @@ public:
     virtual ~LineChart();
     void DataUpdate(int);
 
+public slots:
+    void updateYRange();
+
+
 private:
     QTimer m_timer;
     QSplineSeries *m_series;
@@ -37,6 +41,7 @@ private:
     qreal m_y;
     QElapsedTimer myElapsedTimer;
     int most;
+
 };
 
 #endif // LINECHART_H

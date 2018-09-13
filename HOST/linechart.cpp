@@ -35,10 +35,25 @@ LineChart::LineChart(QColor LineColor,int most,QGraphicsItem *parent, Qt::Window
     axisX()->setLabelsVisible(false);
     axisY()->setLabelsFont(font);
 
-    m_timer.start();
+    m_timer.start(10000); // 單位ms
     myElapsedTimer.start();
 
     setMargins(QMargins(10,0,0,0));
+
+    connect(&m_timer,SIGNAL(timeout()),this,SLOT(updateYRange()));
+}
+
+void LineChart::updateYRange()
+{
+    int max=0,tmp=0;
+
+    for(int i=0;i<25;i++)
+    {
+        tmp = int(m_series->at(i).y());
+        if(tmp>=max) max = tmp;
+    }
+
+    most = max;
 }
 
 LineChart::~LineChart()
